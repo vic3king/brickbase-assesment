@@ -1,0 +1,12 @@
+# While approaching this challenge I kept a few things in mind
+ - scalability, - code organization
+ 
+- I started by configuring linting with eslint and prettier. this helped me move fast as I was able to lint the codebase, identify missing variable names and also spot syntax error fast.
+- The codebase had other error besides the wrong syntax
+ - Controllers, on the event controller we were importing our mongoose schema directly, this was wrong because our controller only has to directly know about our database Models and the model, in turn, would import the already defined mongoose schema.
+ - To fix the model and schema issue, I realized there was no database setup, so I set up mongo DB for both a test environment and a development environment, this means we maintain data integrity when testing and prevent side effects on development data.
+ - Also on our controller for creating an event, we had some other errors like not getting any data from our request body, and also we had some wrong use of some javascript functions when creating a dateStart for an event.
+ - now on the database front we have, a new model I just created, an already existing schema and also the index file containing our DB setup, I grouped all these files in a folder called DB(this helps with code organization and separation of concerns).
+ - next, I moved to the routes folder where we had a couple of issues, we were calling an invalid route method on the router rather than an HTTP command like a POST and GET, also we were importing two invalid controllers rather than the one we created. to fix this I did a little refactoring, I introduced a new file to the codebase called index.js this would be our single source of truth as all routes files will pass through it. why the change? as our codebase begins to expand we will continue adding more resources like events, users which would all have full crud operations and thus multiple routes, etc, my strategy is to keep each resource in its own file events routes and all its crud operations would live in a file and we export that resources as a pack into our index folder and from there we server it to our application. the same would apply for each new resource being added
+ - next issue was on the entry file of the application, I properly imported our new routes file, imported our DB setup and configured that, I also introduced some API versioning for the application this means we can migrate to a new version easily without breaking our codebase.
+ - Finally, I set up tests with jests and wrote some tests

@@ -9,13 +9,21 @@
         "express": "^4.16.4",
         "mockgoose": "^8.0.4",
         "mongoose": "^5.5.8",
-        "morgan": "^1.9.1"
+        "morgan": "^1.9.1",
+        "cross-env": "^6.0.3",
+        "@babel/core": "^7.4.0",
+        "@babel/register": "^7.4.0"
     },
     "scripts": {
         "start": "nodemon index.js",
+        "test": "node_modules/.bin/jest --detectOpenHandles",
         "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
+        "lint:fix": "eslint . --fix",
+        "prettier:fix": "prettier --write \"./**/*.js\"",
+        "coverage": "nyc report --reporter=text-lcov | coveralls",
+        "check:coverage": "nyc check-coverage --lines 80"
     },
+   
     "devDependencies": {
         "babel-eslint": "^9.0.0",
         "eslint": "^5.16.0",
@@ -29,6 +37,9 @@
         "eslint-plugin-react": "^7.17.0",
         "eslint-plugin-react-hooks": "^1.7.0",
         "nodemon": "^1.19.1",
-        "prettier": "^1.19.1"
+        "prettier": "^1.19.1",
+        "jest": "^24.9.0",
+        "line-by-line": "^0.1.6",
+        "supertest": "^4.0.2"
     }
 }
