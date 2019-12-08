@@ -13,10 +13,10 @@ module.exports = {
   modulePathIgnorePatterns: ["index.js", "coverage", "jest.config.js"],
   coverageThreshold: {
     global: {
-      // branches: 80,
-      // functions: 80,
-      lines: 80,
-      statements: 80
+      branches: 80,
+      functions: 75,
+      lines: 90,
+      statements: 90
     }
   }
 };

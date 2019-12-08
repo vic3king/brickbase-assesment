@@ -4,9 +4,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 // local imports
-const routes = require("./routes/events");
+const routes = require("./routes");
 const db = require("./db/index");
-const eventseeders = require("./db/seeders/events");
+const eventseeders = require("./db/seeders/seeds");
 
 // variables
 dotenv.config();

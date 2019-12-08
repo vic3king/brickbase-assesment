@@ -3,7 +3,7 @@ const app = require("../../index");
 const mongoose = require("mongoose");
 
 describe("WELCOME PAGE", () => {
-  it("should return error", () => {
+  it("should return welcome message", () => {
     request(app)
       .get("/")
       .then(res => {
