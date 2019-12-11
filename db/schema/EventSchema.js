@@ -22,6 +22,4 @@ const EventSchema = new Schema(
   }
 );
 
-// EventSchema.set("timestamps", true);
-
 module.exports = EventSchema;

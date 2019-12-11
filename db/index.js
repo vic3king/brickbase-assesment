@@ -33,5 +33,6 @@ const connect = () =>
   });
 
 const close = () => mongoose.disconnect();
-
+// db.once('open', _ => console.log('Database connected:', url));
+// db.on('error', err => console.error('connection error:', err));
 module.exports = { connect, close };

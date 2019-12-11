@@ -1,0 +1,226 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Brickbase Assesment",
+    "description": "Brickbase Assesment -..-",
+    "version": "1.0"
+  },
+  "host": "127.0.0.1:5000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "SignUp users"
+    },
+    {
+      "name": "Users",
+      "description": "Users API end point"
+    },
+    {
+      "name": "Events",
+      "description": "Events API end point"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Welcome"],
+        "summary": "GET API endpoint welcome message",
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "responses": {
+          "200": {
+            "description": "welcome"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register a user and generate a token",
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "users  name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email of the user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "users password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "DB error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/users/user": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "GET API endpoint for getting a user and their events",
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "User not authorized"
+          },
+          "500": {
+            "description": "DB error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/events/user": {
+      "get": {
+        "tags": ["Events"],
+        "summary": "GET API endpoint for getting all events belonging to a particular user",
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "User not authorized"
+          },
+          "500": {
+            "description": "DB error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/events": {
+      "get": {
+        "tags": ["Events"],
+        "summary": "GET API endpoint for getting all events in the db",
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "DB error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/events/event": {
+      "post": {
+        "tags": ["Events"],
+        "summary": "create an event and link it to a user",
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "title for the event",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "details",
+            "in": "formData",
+            "description": "details of the event",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "in": "formData",
+            "description": "Start date for the event 'July 2, 1999'",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "end",
+            "in": "formData",
+            "description": "end date for the event 'July 3, 1999'",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "User not authorized"
+          },
+          "500": {
+            "description": "DB error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "authorization",
+      "in": "header"
+    }
+  }
+}

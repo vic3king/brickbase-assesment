@@ -2,11 +2,12 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const swaggerUi = require('swagger-ui-express');
 
 // local imports
 const routes = require("./routes");
 const db = require("./db/index");
-const eventseeders = require("./db/seeders/seeds");
+const swaggerSpec = require('./documentation/swagger.json');
 
 // variables
 dotenv.config();
@@ -26,7 +27,15 @@ app.get("/", (req, res) => {
   res.send("Brickbase Assesment");
 });
 
+app.get(`${baseUrl}/doc`, (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
+
 app.use(`${baseUrl}`, routes);
+app.use(`${baseUrl}/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 // catch invalid routes
 app.all("*", (req, res) => {

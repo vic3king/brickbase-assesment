@@ -77,7 +77,7 @@ To view user a user and all users events
 
 
 # Recommendations/ future initiatives
- - We could do document our API with swagger etc
+ - We could do document our API with swagger etc (http://127.0.0.1:5000/api/v1/api-docs/#)✅
  - we could convert the whole codebase to ECMA script 6 style(I tied to stay in line with our legacy codebase)
  - we could easily use google's API to validate the addresses, lat, and LNG of our events
 
